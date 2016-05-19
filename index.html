@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Σε Αναμονή</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+ 
+    </style>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+     
+      var map; 
+      function initMap() {
+        var default_pos = { lat: 34.9279288, lng: 33.170091 };
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: default_pos,
+          zoom: 10,
+          mapTypeControlOptions: { mapTypeIds: [] }
+        });
+      };
+
+      $( document ).ready(function() {
+		    $.getJSON("locations.txt", function(json) {
+	          console.log ( 'get json')
+	          $.each(json, function(key, data) {
+	           	var latLng = new google.maps.LatLng(data.lat, data.lng); 
+	            var marker = new google.maps.Marker({
+	                position: latLng,
+	                title: data.title
+	            });
+
+	            // create info window
+	            var infoWindow = new google.maps.InfoWindow({ content: data.description });
+
+	            marker.setMap(map);
+
+	            marker.addListener('click', function() {
+				    infoWindow.open(map, marker);
+				});
+
+	          });
+	        });
+		});
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      };
+
+      	
+        
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPNpA7rVFFaHX-KqkVAJwTdB6O6co7jGE&callback=initMap"
+    async defer></script>
+    
+
+</body>
+</html>
