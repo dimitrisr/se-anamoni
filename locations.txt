@@ -1,8 +1,8 @@
 [
 	{
 	    "title": "Stasikratous 30",
-	    "lat": 35.1668852,
-	    "lng": 33.358109,
+	    "lat": 35.16525,
+	    "lng": 33.362321,
 	    "description": "more for Stasikratous"
     },
     { 
