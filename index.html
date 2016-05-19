@@ -9,19 +9,46 @@
         height: 100%;
         margin: 0;
         padding: 0;
+        font-family: Verdana;
       }
       #map {
         height: 100%;
       }
- 
+ 		#container-main {
+ 			background: #fff;
+ 			position: absolute;
+ 			z-index: 1000;
+ 			top: 10px;
+ 			left: 10px;
+ 			padding: 5px;
+ 			max-width: 200px;
+ 		}
+ 		#container-main h1 {
+ 			font-size: 1rem;
+ 			
+ 		}
+ 		#container-main p {
+ 			font-size: 0.9rem;
+ 		}
+ 		.infowindow h3 {
+ 			margin-bottom: 0px;
+ 		}
+ 		.infowindow p {
+ 			margin-top: 0px;
+ 			margin-bottom: 0px;
+ 		}
     </style>
+    <script src="https://use.fontawesome.com/16b57625ce.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
   </head>
   <body>
     <div id="map"></div>
+    <div id="container-main">
+    	<h1>Σε Αναμονή</h1>
+    	<p><span id="id_counter"></span> επιχειρήσεις προσφέρουν προϊόντα και υπηρεσίες "Σε Αναμονή"</p>
+    </div>
     <script>
-     
-      var map; 
+     var map; 
       function initMap() {
         var default_pos = { lat: 34.9279288, lng: 33.170091 };
         map = new google.maps.Map(document.getElementById('map'), {
@@ -32,37 +59,30 @@
       };
 
       $( document ).ready(function() {
-		    $.getJSON("locations.txt", function(json) {
-	          console.log ( 'get json')
-	          $.each(json, function(key, data) {
-	           	var latLng = new google.maps.LatLng(data.lat, data.lng); 
-	            var marker = new google.maps.Marker({
-	                position: latLng,
-	                title: data.title
-	            });
+	    
+	    $.getJSON("locations.txt", function(json) {
+          // console.log ( 'get json')
+          $('#id_counter').html( Object.keys(json).length )
+          $.each(json, function(key, data) {
+           	var latLng = new google.maps.LatLng(data.lat, data.lng); 
+            var marker = new google.maps.Marker({
+                position: latLng,
+                title: data.title
+                //icon: 'assets/images/pointer.png' 
+            });
 
-	            // create info window
-	            var infoWindow = new google.maps.InfoWindow({ content: data.description });
+            // create info window
+            var infoWindow = new google.maps.InfoWindow({ content: data.description });
 
-	            marker.setMap(map);
+            marker.setMap(map);
 
-	            marker.addListener('click', function() {
-				    infoWindow.open(map, marker);
-				});
+            marker.addListener('click', function() {
+			    infoWindow.open(map, marker);
+			});
 
-	          });
-	        });
-		});
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      };
-
-      	
-        
+          });
+        });
+	});
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPNpA7rVFFaHX-KqkVAJwTdB6O6co7jGE&callback=initMap"
