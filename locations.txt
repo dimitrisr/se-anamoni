@@ -1,14 +1,14 @@
 [
 	{
 	    "title": "Stasikratous 30",
-	    "lat": 35.16525,
-	    "lng": 33.362321,
-	    "description": "more for Stasikratous"
+	    "lat": 35.1668852,
+	    "lng": 33.358109,
+	    "description": "<div class='infowindow'><h3>Στασικράτους 30</h3><p>Cafe / Restaurant</p> <i class='fa fa-phone'></i> 22 333 808<br/><a href='https://www.facebook.com/stasikratous30'><i class='fa fa-facebook-official'></i></a> <br/></div>"
     },
     { 
-    	"title" : "Rebelio",
+    	"title" : "Rebelio Bar",
     	"lat" : 35.0219524,
     	"lng" : 33.4192247,
-    	"description" : "more for Rebelio"
+    	"description" : "<div class='infowindow'> <h3>Rebelio</h3> <p>Cafe / Bar</p> <i class='fa fa-phone'></i> 22 xxxxxx<br/><a href='https://www.facebook.com/rebeliocafe'><i class='fa fa-facebook-official'></i></a> <br/></div>"
     }
 ]
