@@ -1,0 +1,14 @@
+[
+	{
+	    "title": "Stasikratous 30",
+	    "lat": 35.1668852,
+	    "lng": 33.358109,
+	    "description": "more for Stasikratous"
+    },
+    { 
+    	"title" : "Rebelio",
+    	"lat" : 35.0219524,
+    	"lng" : 33.4192247,
+    	"description" : "more for Rebelio"
+    }
+]
